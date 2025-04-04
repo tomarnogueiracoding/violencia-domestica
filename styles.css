@@ -17,13 +17,17 @@
   font-family: 'Nunito', sans-serif;
 }
 
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
 .hidden {
   display: none !important;
 }
 
 body {
-  min-width: 320px;
-  background: linear-gradient(160deg, #E8F6EF, #FFF3E0);
+  background: var(--background-color);
   color: var(--text-color);
   display: flex;
   flex-direction: column;
@@ -32,13 +36,11 @@ body {
   min-height: 100vh;
   text-align: center;
   padding: 20px;
+  min-width: 320px;
 }
 
-#quiz-container {
-  perspective: 1000px;
-}
-
-#start {
+#start, #result, #quiz-container {
+  width: 100%;
   max-width: 600px;
   padding: 40px;
   background: #FFF;
@@ -55,64 +57,68 @@ body {
 }
 
 #start p {
-  font-size: 18px;
+  font-size: 16px;
   margin-bottom: 20px;
 }
 
 .privacy-note {
-  font-size: 16px;
+  font-size: 14px;
   opacity: 0.8;
 }
 
-/* Botões */
 button {
   background: var(--primary-color);
   color: white;
   border: none;
-  font-size: 16px;
   padding: 10px 24px;
+  font-size: 16px;
   border-radius: 30px;
   cursor: pointer;
   transition: background 0.3s ease;
-  margin-top: 5px;
-  margin-bottom: 15px;
+  margin-top: 15px;
 }
 
 button:hover {
   background: var(--secondary-color);
 }
 
-/* Cartão */
 .card {
+  position: relative;
+  width: 100%;
   max-width: 320px;
-  height: 220px;
-  min-height: 220px;
+  min-height: 240px;
+  height: auto;
   border-radius: 20px;
   box-shadow: 0px 8px 16px var(--shadow-color);
-  position: relative;
-  transform-style: preserve-3d;
   transition: transform 0.6s;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  overflow: visible;
   margin-bottom: 20px;
 }
 
 .card-front,
 .card-back {
   position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 100%;
+  min-height: 240px;
   backface-visibility: hidden;
   border-radius: 20px;
-  padding: 30px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transition: opacity 0.6s;
+  text-align: center;
+  word-break: break-word;
 }
 
 .card-front {
   background: var(--front-card-color);
   opacity: 1;
+  z-index: 2;
 }
 
 .card-back {
@@ -120,9 +126,10 @@ button:hover {
   color: var(--text-color);
   transform: rotateY(180deg);
   opacity: 0;
+  z-index: 1;
 }
 
-.flip {
+.card.flip {
   transform: rotateY(180deg);
 }
 
@@ -132,67 +139,6 @@ button:hover {
 
 .card.flip .card-back {
   opacity: 1;
-}
-
-#result {
-  max-width: 600px;
-  padding: 40px;
-  background: #FFF;
-  border-radius: 20px;
-  box-shadow: 0px 8px 16px var(--shadow-color);
-  animation: fadeIn 1s ease-in-out;
-}
-
-#result h2 {
-  font-size: 28px;
-  margin-bottom: 10px;
-  color: var(--primary-color);
-}
-
-#score-message {
-  font-size: 20px;
-  font-weight: 600;
-  margin: 20px 0;
-}
-
-#start h1,
-#result h2 {
-  font-size: 26px;
-}
-
-#score-message,
-#start p,
-#context-text,
-#question-text {
-  font-size: 16px;
-}
-
-#result ul {
-  list-style: none;
-  padding: 0;
-  margin: 20px 0;
-}
-
-#result li a {
-  color: var(--primary-color);
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 18px;
-}
-
-#result li a:hover {
-  text-decoration: underline;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 #loading {
@@ -219,23 +165,63 @@ button:hover {
   100% { transform: rotate(360deg); }
 }
 
-/* Responsivo */
-@media (max-width: 480px) {
-  #start, #result {
-    max-width: 95%;
+#result h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: var(--primary-color);
+}
+
+#score-message {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 20px 0;
+}
+
+#result ul {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+#result li a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+#result li a:hover {
+  text-decoration: underline;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  #start, #result, #quiz-container {
+    width: 95%;
+    max-width: 95vw;
     padding: 16px;
   }
 
   .card {
-    width: 100%;
     max-width: 300px;
-    height: 200px;
-    min-height: 200px;
-    margin: 0 auto;
+    min-height: 240px;
+    height: auto;
+    margin: 0 auto 20px auto;
   }
 
   .card-front, .card-back {
-    padding: 20px;
+    min-height: 240px;
+    padding: 16px;
   }
 
   #question-text, #context-text {
@@ -249,41 +235,5 @@ button:hover {
     width: 90%;
     max-width: 220px;
     margin: 8px 0;
-  }
-}
-
-@media (min-width: 768px) {
-  .card {
-    width: 480px;
-    height: 280px;
-  }
-
-  .card-front, .card-back {
-    padding: 40px;
-  }
-
-  #question-text, #context-text {
-    font-size: 20px;
-  }
-
-  button {
-    font-size: 20px;
-    padding: 16px 32px;
-  }
-}
-
-@media (max-width: 280px) {
-  body::before {
-    content: "⚠️ Ecrã demasiado pequeno para visualizar este conteúdo.";
-    display: block;
-    padding: 20px;
-    background: #fff3cd;
-    color: #856404;
-    text-align: center;
-    font-weight: bold;
-  }
-
-  #start, #quiz-container, #result {
-    display: none;
   }
 }

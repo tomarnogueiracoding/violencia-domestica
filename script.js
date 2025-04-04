@@ -75,13 +75,17 @@ class Quiz {
   }
 
   showResult() {
-    // Esconde quiz, mostra loading
+    // Esconde tudo o que não deve estar visível
     this.quizContainer.classList.add("hidden");
     this.resultContainer.classList.add("hidden");
-    this.loadingScreen.classList.remove("hidden");
 
+    // Mostra o spinner
+    const loadingScreen = document.getElementById("loading");
+    loadingScreen.classList.remove("hidden");
+
+    // Aguarda 2 segundos e depois mostra o resultado
     setTimeout(() => {
-      this.loadingScreen.classList.add("hidden");
+      loadingScreen.classList.add("hidden");
       this.resultContainer.classList.remove("hidden");
 
       const percent = (this.score / this.questions.length) * 100;
@@ -96,7 +100,7 @@ class Quiz {
         this.scoreMessage.innerText =
           "✅ Risco Baixo. No entanto, esteja alerta aos sinais.";
       }
-    }, 2000);
+    }, 2000); // Tempo de espera do "analisar..."
   }
 
   restartQuiz() {

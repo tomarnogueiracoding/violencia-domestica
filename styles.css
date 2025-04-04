@@ -10,11 +10,6 @@
   --shadow-color: rgba(0, 0, 0, 0.1);
 }
 
-html, body {
-  width: 100%;
-  overflow-x: hidden;
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -27,6 +22,7 @@ html, body {
 }
 
 body {
+  min-width: 320px;
   background: linear-gradient(160deg, #E8F6EF, #FFF3E0);
   color: var(--text-color);
   display: flex;
@@ -53,7 +49,7 @@ body {
 }
 
 #start h1 {
-  font-size: 32px;
+  font-size: 26px;
   margin-bottom: 10px;
   color: var(--primary-color);
 }
@@ -68,39 +64,35 @@ body {
   opacity: 0.8;
 }
 
+/* Botões */
 button {
   background: var(--primary-color);
   color: white;
   border: none;
-  padding: 14px 28px;
-  font-size: 18px;
+  font-size: 16px;
+  padding: 10px 24px;
   border-radius: 30px;
   cursor: pointer;
   transition: background 0.3s ease;
-  margin-top: 15px;
+  margin-top: 5px;
+  margin-bottom: 15px;
 }
 
 button:hover {
   background: var(--secondary-color);
 }
 
+/* Cartão */
 .card {
-  width: 100%;
-  max-width: 360px;
-  height: 240px;
+  max-width: 320px;
+  height: 220px;
+  min-height: 220px;
   border-radius: 20px;
   box-shadow: 0px 8px 16px var(--shadow-color);
   position: relative;
   transform-style: preserve-3d;
   transition: transform 0.6s;
   margin-bottom: 20px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  word-break: break-word;
-  text-align: center;
 }
 
 .card-front,
@@ -116,8 +108,6 @@ button:hover {
   justify-content: center;
   align-items: center;
   transition: opacity 0.6s;
-  word-break: break-word;
-  text-align: center;
 }
 
 .card-front {
@@ -165,6 +155,18 @@ button:hover {
   margin: 20px 0;
 }
 
+#start h1,
+#result h2 {
+  font-size: 26px;
+}
+
+#score-message,
+#start p,
+#context-text,
+#question-text {
+  font-size: 16px;
+}
+
 #result ul {
   list-style: none;
   padding: 0;
@@ -180,6 +182,17 @@ button:hover {
 
 #result li a:hover {
   text-decoration: underline;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 #loading {
@@ -206,51 +219,71 @@ button:hover {
   100% { transform: rotate(360deg); }
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
+/* Responsivo */
 @media (max-width: 480px) {
-  body {
-    overflow-x: hidden;
-    padding: 16px;
-  }
-
   #start, #result {
     max-width: 95%;
-    padding: 20px;
+    padding: 16px;
   }
 
   .card {
     width: 100%;
-    max-width: 360px;
-    height: auto;
+    max-width: 300px;
+    height: 200px;
+    min-height: 200px;
     margin: 0 auto;
   }
 
   .card-front, .card-back {
-    padding: 24px;
-    text-align: center;
-    word-break: break-word;
+    padding: 20px;
   }
 
   #question-text, #context-text {
-    font-size: 18px;
-    line-height: 1.5;
+    font-size: 14px;
+    line-height: 1.4;
   }
 
   button {
-    font-size: 16px;
-    padding: 12px 20px;
-    width: 100%;
-    max-width: 240px;
-    margin: 10px 0;
+    font-size: 14px;
+    padding: 8px 18px;
+    width: 90%;
+    max-width: 220px;
+    margin: 8px 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .card {
+    width: 480px;
+    height: 280px;
+  }
+
+  .card-front, .card-back {
+    padding: 40px;
+  }
+
+  #question-text, #context-text {
+    font-size: 20px;
+  }
+
+  button {
+    font-size: 20px;
+    padding: 16px 32px;
+  }
+}
+
+@media (max-width: 280px) {
+  body::before {
+    content: "⚠️ Ecrã demasiado pequeno para visualizar este conteúdo.";
+    display: block;
+    padding: 20px;
+    background: #fff3cd;
+    color: #856404;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  #start, #quiz-container, #result {
+    display: none;
   }
 }

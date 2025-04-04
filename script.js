@@ -87,11 +87,14 @@ class Quiz {
       const percent = (this.score / this.questions.length) * 100;
 
       if (percent >= 70) {
-        this.scoreMessage.innerText = "⚠️ Risco Elevado. Procure ajuda imediatamente.";
+        this.scoreMessage.innerText =
+          "⚠️ Risco Elevado. Procure ajuda imediatamente.";
       } else if (percent >= 40) {
-        this.scoreMessage.innerText = "⚠️ Risco Moderado. Mantenha-se alerta e procure ajuda.";
+        this.scoreMessage.innerText =
+          "⚠️ Risco Moderado. Mantenha-se alerta e procure ajuda.";
       } else {
-        this.scoreMessage.innerText = "✅ Risco Baixo. No entanto, esteja alerta aos sinais.";
+        this.scoreMessage.innerText =
+          "✅ Risco Baixo. No entanto, esteja alerta aos sinais.";
       }
     }, 2000);
   }

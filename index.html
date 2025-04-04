@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sou vítima de violência doméstica?</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <script type="module" src="./script.js" defer></script>
+</head>
+<body>
+
+  <section id="start">
+    <h1>Sou vítima de violência doméstica?</h1>
+    <p>Responda às seguintes questões para avaliar a sua segurança no seu relacionamento</p>
+    <button id="startBtn">Iniciar o questionário</button>
+    <p class="privacy-note">
+      🔒 Este questionário é <strong>100% anônimo</strong>. Nenhuma resposta será armazenada ou partilhada.
+    </p>
+  </section>
+
+  <section id="quiz-container" class="hidden">
+    <div id="quiz-card" class="card">
+      <div id="card-front" class="card-front">
+        <p id="question-text">Carregando pergunta...</p>
+        <button id="btn-yes" class="button">Sim</button>
+        <button id="btn-no" class="button">Não</button>
+      </div>
+      <div id="card-back" class="card-back">
+        <p id="context-text">Carregando contexto...</p>
+        <button id="next-question" class="btn">Próxima Pergunta</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="loading" class="hidden">
+    <div class="spinner"></div>
+    <p>A analisar as suas respostas…</p>
+  </section>
+
+  <section id="result" class="hidden">
+    <h2>O seu resultado</h2>
+    <p id="score-message"></p>
+    <h3>Recursos de ajuda</h3>
+    <ul>
+      <li><a href="#">Linha de Apoio à Vítima - 116 006</a></li>
+      <li><a href="#">APAV - Associação Portuguesa de Apoio à Vítima</a></li>
+      <li><a href="#">Polícia de Segurança Pública</a></li>
+    </ul>
+    <button id="restartBtn">Repetir questionário</button>
+  </section>
+
+</body>
+</html>

@@ -214,11 +214,12 @@ button:hover {
     width: 95%;
     max-width: 95vw;
     padding: 16px;
-    min-height: 90vh;
+    /* min-height: 90vh; */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    
   }
 
   .card {
@@ -241,7 +242,7 @@ button:hover {
   button {
     font-size: 14px;
     padding: 8px 18px;
-    width: 90%;
+    /* width: 90%; */
     max-width: 220px;
     margin: 8px 0;
   }
